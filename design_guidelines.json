@@ -1,0 +1,86 @@
+{
+  "theme": "Light",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "design_philosophy": "Clarity-first minimalism. Zero decoration. Pure function. High contrast typography and 1px structural borders.",
+  "typography": {
+    "heading_font": "Chivo",
+    "body_font": "Inter",
+    "rules": {
+      "h1": "text-4xl tracking-tighter font-black text-[#0A0A0A]",
+      "h2": "text-2xl tracking-tight font-bold text-[#0A0A0A]",
+      "h3": "text-xl font-semibold text-[#0A0A0A]",
+      "body": "text-base font-normal leading-relaxed text-[#171717]",
+      "labels": "uppercase text-xs tracking-[0.2em] font-medium text-[#737373]"
+    }
+  },
+  "colors": {
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "text_primary": "#0A0A0A",
+    "text_secondary": "#525252",
+    "border": "#E5E5E5",
+    "status": {
+      "Pending": { "bg": "#FEF9C3", "text": "#A16207", "border": "#FEF08A" },
+      "Refunded": { "bg": "#DCFCE7", "text": "#15803D", "border": "#BBF7D0" },
+      "Lost": { "bg": "#FEE2E2", "text": "#B91C1C", "border": "#FECACA" }
+    },
+    "primary_button": {
+      "bg": "#0A0A0A",
+      "text": "#FFFFFF",
+      "hover": "#262626"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing, Optical Alignment, Mobile-First",
+    "grid_system": "MODE B: THE CONTROL ROOM GRID for summary stats. Use strict tabular alignment for data.",
+    "container_padding": "p-6 md:p-8",
+    "gap_strategy": "gap-6 md:gap-8"
+  },
+  "surface_strategies": {
+    "dashboard_cards": "Flat solid background (bg-white), 1px border border-[#E5E5E5], NO shadow. Hover: subtle border-black.",
+    "modals_drawers": "Solid bg-white, 1px border border-[#E5E5E5], shadow-2xl. No glassmorphism.",
+    "tables": "border-collapse layout, 1px border-b on rows, py-4 padding."
+  },
+  "components": {
+    "buttons": "Square or very slightly rounded (rounded-sm). High contrast bg-black text-white for primary, bg-white border border-gray-200 text-black for secondary.",
+    "inputs": "Flat, 1px border border-gray-200, focus:ring-1 focus:ring-black focus:border-black, bg-[#FAFAFA]. rounded-sm.",
+    "badges": "rounded-sm px-2.5 py-0.5 text-xs font-medium border",
+    "file_upload": "Dashed border border-gray-300, bg-gray-50, hover:bg-gray-100 transition-colors, rounded-sm p-8 flex flex-col items-center justify-center cursor-pointer"
+  },
+  "icons": {
+    "library": "@phosphor-icons/react",
+    "style": "Regular or Light weight, size 20px for inline, 24px for actions, 48px for empty states"
+  },
+  "motion": {
+    "hover": "transition-all duration-200 ease-in-out",
+    "modals": "Fade in, slide up slightly (translate-y-2 to 0)",
+    "rules": "Respect prefers-reduced-motion"
+  },
+  "pages": {
+    "dashboard": {
+      "layout": "Header with App Name and 'Add Payment' button. Top section: 4 Summary Cards. Main section: Filter bar (Search, Status Dropdown) and Export button. Below: Full width table of payments.",
+      "summary_cards": [
+        { "title": "Total Amount Stuck", "id": "total-stuck" },
+        { "title": "Pending Refunds", "id": "pending-refunds" },
+        { "title": "Recovered Amount", "id": "recovered-amount" },
+        { "title": "Lost Amount", "id": "lost-amount" }
+      ],
+      "table_columns": ["Date", "Merchant", "Amount", "Method", "Txn ID", "Status", "Actions"]
+    },
+    "add_payment_modal": {
+      "layout": "Grid layout. Form fields: Amount (number), Date (datepicker), Merchant (text), Payment Method (Select: UPI, Card, NetBanking), Txn ID (text), Bank Name (text), Status (Select: Pending, Refunded, Lost), Notes (textarea). File Upload for Screenshot. Submit and Cancel buttons."
+    },
+    "payment_detail_modal": {
+      "layout": "2-column grid on desktop, stacked on mobile. Left: Payment metadata and Edit Status dropdown. Right: Screenshot viewer with zoom capability."
+    }
+  },
+  "testing": "All interactive elements MUST include data-testid (e.g., data-testid='add-payment-button', data-testid='export-csv-button', data-testid='payment-row-{id}', etc.)",
+  "instructions_to_main_agent": [
+    "Install required dependencies: @phosphor-icons/react, date-fns, react-dropzone (or similar for file upload), papaparse (or similar for CSV export)",
+    "Use Shadcn UI components for Select, Dialog, Table, Input, Button, DatePicker",
+    "Ensure all components have data-testid attributes",
+    "Implement local storage or standard API for data persistence, including mock upload for screenshots if no real backend",
+    "Maintain 1px border structural aesthetic, avoiding shadows for cards",
+    "Apply 'Chivo' font to all headings and 'Inter' to body. You may need to import them from Google Fonts."
+  ]
+}
