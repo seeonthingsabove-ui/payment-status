@@ -70,12 +70,10 @@ export default function Dashboard() {
         }),
         getStats(),
       ]);
-      setPayments(list);
+      setPayments(Array.isArray(list) ? list : []);
       setStats(s);
     } catch (e) {
-      if (process.env.NODE_ENV !== "production") {
-        console.error("Dashboard fetch failed:", e);
-      }
+      console.error("Dashboard fetch failed:", e);
     } finally {
       setLoading(false);
     }
