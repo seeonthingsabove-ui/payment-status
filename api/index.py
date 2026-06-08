@@ -9,6 +9,7 @@ import os
 import logging
 import uuid
 import requests
+import certifi
 
 # Load .env for local development (Vercel injects env vars automatically)
 try:
@@ -36,12 +37,11 @@ def get_db():
     """Return a MongoDB database handle, reusing the client across warm invocations."""
     global _mongo_client
     if _mongo_client is None:
-        _mongo_client = MongoClient(
-            MONGO_URL,
-            serverSelectionTimeoutMS=5000,
-            tls=True,
-            tlsAllowInvalidCertificates=True,
-        )
+    _mongo_client = MongoClient(
+    MONGO_URL,
+    serverSelectionTimeoutMS=5000,
+    tlsCAFile=certifi.where(),
+)
     return _mongo_client[DB_NAME]
 
 
